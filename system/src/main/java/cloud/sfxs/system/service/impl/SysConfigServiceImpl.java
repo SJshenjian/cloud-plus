@@ -1,11 +1,10 @@
 package cloud.sfxs.system.service.impl;
 
-import cloud.sfxs.system.config.model.Claims;
+import online.shenjian.cloud.common.UserContextHolder;
 import cloud.sfxs.system.mapper.SysConfigMapper;
 import cloud.sfxs.system.mapper.SysConfigPlusMapper;
 import cloud.sfxs.system.model.Config;
 import cloud.sfxs.system.service.SysConfigService;
-import cloud.sfxs.system.utils.TokenUtils;
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -44,8 +43,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, Config> i
         }
         config.setId(IdUtil.getSnowflakeNextIdStr());
         config.setUpdateTime(new Date());
-        Claims claims = TokenUtils.getClaimsFromToken();
-        config.setUpdateUser(claims.getAccount());
+        config.setUpdateUser(UserContextHolder.getUserId());
         sysConfigMapper.insert(config);
         return true;
     }
@@ -78,7 +76,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, Config> i
             return false;
         }
         Config config = CommonDtoUtils.transform(sysConfigDto, Config.class);
-        config.setUpdateUser(TokenUtils.getClaimsFromToken().getAccount());
+        config.setUpdateUser(UserContextHolder.getUserId());
         config.setUpdateTime(new Date());
         sysConfigMapper.updateById(config);
         return true;

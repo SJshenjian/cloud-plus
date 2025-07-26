@@ -3,6 +3,7 @@ package cloud.sfxs.system.controller;
 import cloud.sfxs.system.service.*;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import online.shenjian.cloud.client.cloud.SystemClient;
+import online.shenjian.cloud.client.cloud.dto.UserDto;
 import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigDto;
 import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigQueryDto;
 import online.shenjian.cloud.client.cloud.dto.system.module.ModuleDto;
@@ -14,6 +15,8 @@ import online.shenjian.cloud.client.cloud.dto.system.org.OrgTreeDto;
 import online.shenjian.cloud.client.cloud.dto.system.role.RoleDto;
 import online.shenjian.cloud.client.cloud.dto.system.role.RoleModuleDto;
 import online.shenjian.cloud.client.cloud.dto.system.role.RoleQueryDto;
+import online.shenjian.cloud.client.cloud.dto.user.PasswordDto;
+import online.shenjian.cloud.client.cloud.dto.user.UserQueryDto;
 import online.shenjian.cloud.client.common.ResponseVo;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,9 +42,10 @@ public class SystemController implements SystemClient {
     private final SysConfigService sysConfigService;
     private final FileService fileService;
     private final AuthService authService;
+    private final UserService userService;
 
     public SystemController(OrgService orgService, ModuleService moduleService, RoleService roleService, RoleModuleService roleModuleService,
-                            SysConfigService sysConfigService, FileService fileService, AuthService authService) {
+                            SysConfigService sysConfigService, FileService fileService, AuthService authService, UserService userService) {
         this.orgService = orgService;
         this.moduleService = moduleService;
         this.roleService = roleService;
@@ -49,6 +53,42 @@ public class SystemController implements SystemClient {
         this.sysConfigService = sysConfigService;
         this.fileService = fileService;
         this.authService = authService;
+        this.userService = userService;
+    }
+
+    @Override
+    public ResponseVo login(UserDto userDto) {
+        return userService.login(userDto.getAccount(), userDto.getPassword());
+    }
+
+    @Override
+    public ResponseVo<String> updatePassword(PasswordDto passwordDto) {
+        return userService.updatePassword(passwordDto.getOriginPassword(), passwordDto.getNewPassword());
+    }
+
+    @Override
+    public IPage<UserDto> listUser(UserQueryDto userQueryDto) {
+        return userService.listUser(userQueryDto);
+    }
+
+    @Override
+    public ResponseVo saveUser(UserDto userDto) {
+        return userService.saveUser(userDto);
+    }
+
+    @Override
+    public void deleteUser(String userId) {
+        userService.deleteUser(userId);
+    }
+
+    @Override
+    public ResponseVo updateUser(UserDto userInfoDto) {
+        return userService.updateUser(userInfoDto);
+    }
+
+    @Override
+    public ResponseVo resetPassword(String userId) {
+        return userService.resetPassword(userId);
     }
 
     @Override

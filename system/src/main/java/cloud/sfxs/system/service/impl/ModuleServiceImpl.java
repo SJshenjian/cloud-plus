@@ -1,18 +1,19 @@
 package cloud.sfxs.system.service.impl;
 
-import cn.hutool.core.util.IdUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleDto;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleQueryDto;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleTreeDto;
 import cloud.sfxs.system.mapper.ModuleMapper;
 import cloud.sfxs.system.mapper.RoleModuleMapper;
 import cloud.sfxs.system.model.Module;
 import cloud.sfxs.system.model.RoleModule;
 import cloud.sfxs.system.service.ModuleService;
+import cloud.sfxs.system.utils.TreeUtils;
+import cn.hutool.core.util.IdUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.micrometer.common.util.StringUtils;
+import online.shenjian.cloud.client.cloud.dto.system.module.ModuleDto;
+import online.shenjian.cloud.client.cloud.dto.system.module.ModuleQueryDto;
+import online.shenjian.cloud.client.cloud.dto.system.module.ModuleTreeDto;
 import online.shenjian.cloud.common.utils.CommonDtoUtils;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,8 @@ import java.util.List;
 @Service
 public class ModuleServiceImpl implements ModuleService {
 
-    private ModuleMapper moduleMapper;
-    private RoleModuleMapper roleModuleMapper;
+    private final ModuleMapper moduleMapper;
+    private final RoleModuleMapper roleModuleMapper;
 
     public ModuleServiceImpl(ModuleMapper moduleMapper, RoleModuleMapper roleModuleMapper) {
         this.moduleMapper = moduleMapper;

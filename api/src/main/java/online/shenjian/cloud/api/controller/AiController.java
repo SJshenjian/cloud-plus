@@ -1,4 +1,4 @@
-package online.shenjian.cloud.api.ai.service.controller;
+package online.shenjian.cloud.api.controller;
 
 import online.shenjian.cloud.api.ai.service.ChatService;
 import online.shenjian.cloud.api.ai.service.impl.DoubaoChatServiceImpl;

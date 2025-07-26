@@ -1,4 +1,4 @@
-package cloud.sfxs.system.config.model;
+package online.shenjian.cloud.common.model;
 
 import lombok.Data;
 

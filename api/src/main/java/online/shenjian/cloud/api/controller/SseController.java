@@ -1,4 +1,4 @@
-package online.shenjian.cloud.api.ai.service.controller;
+package online.shenjian.cloud.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletResponse;

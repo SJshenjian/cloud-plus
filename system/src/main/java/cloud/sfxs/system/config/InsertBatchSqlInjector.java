@@ -1,4 +1,4 @@
-package cloud.sfxs.system.config.mybatis;
+package cloud.sfxs.system.config;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;

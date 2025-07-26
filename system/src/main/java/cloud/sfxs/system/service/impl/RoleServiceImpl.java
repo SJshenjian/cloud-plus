@@ -40,10 +40,11 @@ public class RoleServiceImpl implements RoleService {
             queryWrapper.like("role_name", roleQueryDto.getRoleName());
         }
         // 防止非超级管理员用户新增时增加该角色
-        Claims claims = TokenUtils.getClaimsFromToken();
-        if (claims.getRoles() != null && !claims.getRoles().contains("super-admin")) {
-            queryWrapper.notLike("role_id", "super-admin");
-        }
+        // 暂时注释
+//        Claims claims = TokenUtils.getClaimsFromToken();
+//        if (claims.getRoles() != null && !claims.getRoles().contains("super-admin")) {
+//            queryWrapper.notLike("role_id", "super-admin");
+//        }
         IPage<Role> iPage = roleMapper.selectPage(page, queryWrapper);
         List<RoleDto> patientDtoList = CommonDtoUtils.transformList(iPage.getRecords(), RoleDto.class);
         IPage<RoleDto> resultPage = new Page<>(iPage.getCurrent(), iPage.getSize(), iPage.getTotal());

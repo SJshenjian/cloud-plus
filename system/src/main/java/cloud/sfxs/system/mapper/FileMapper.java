@@ -1,9 +1,8 @@
 package cloud.sfxs.system.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import cloud.sfxs.system.model.File;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
-
 
 
 /**

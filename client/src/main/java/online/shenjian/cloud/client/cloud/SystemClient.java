@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import online.shenjian.cloud.client.cloud.dto.UserDto;
 import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigDto;
 import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigQueryDto;
 import online.shenjian.cloud.client.cloud.dto.system.module.ModuleDto;
@@ -15,6 +16,8 @@ import online.shenjian.cloud.client.cloud.dto.system.org.OrgTreeDto;
 import online.shenjian.cloud.client.cloud.dto.system.role.RoleDto;
 import online.shenjian.cloud.client.cloud.dto.system.role.RoleModuleDto;
 import online.shenjian.cloud.client.cloud.dto.system.role.RoleQueryDto;
+import online.shenjian.cloud.client.cloud.dto.user.PasswordDto;
+import online.shenjian.cloud.client.cloud.dto.user.UserQueryDto;
 import online.shenjian.cloud.client.common.ResponseVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -28,6 +31,34 @@ import java.util.List;
 @FeignClient(value = "system", contextId = "system")
 @Component
 public interface SystemClient {
+
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "登录", tags = "用户管理")
+    ResponseVo login(@RequestBody UserDto userDto);
+
+    @PostMapping(value = "/user/updatePassword", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "修改密码", tags = "用户管理")
+    ResponseVo<String> updatePassword(@RequestBody PasswordDto passwordDto);
+
+    @PostMapping(value = "/user/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "用户列表", tags = "用户管理")
+    IPage<UserDto> listUser(@RequestBody UserQueryDto userQueryDto);
+
+    @PostMapping(value = "/user/save", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "保存用户", tags = "用户管理")
+    ResponseVo saveUser(@RequestBody UserDto userDto);
+
+    @GetMapping(value = "/user/delete", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "删除用户", tags = "用户管理")
+    void deleteUser(@RequestParam(value = "userId") String userId);
+
+    @PostMapping(value = "/user/update", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "更新用户", tags = "用户管理")
+    ResponseVo updateUser(@RequestBody UserDto userDto);
+
+    @GetMapping(value = "/user/resetPassword", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "重置密码", tags = "用户管理")
+    ResponseVo resetPassword(@RequestParam(value = "userId") String userId);
 
     @PostMapping(value = "/org/initOrgInfoTree", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "机构初始化下拉树形", tags = "系统管理")

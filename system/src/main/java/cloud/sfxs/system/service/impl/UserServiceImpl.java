@@ -1,5 +1,6 @@
 package cloud.sfxs.system.service.impl;
 
+import online.shenjian.cloud.common.UserContextHolder;
 import cloud.sfxs.system.config.model.Claims;
 import cloud.sfxs.system.mapper.ModulePlusMapper;
 import cloud.sfxs.system.mapper.UserMapper;
@@ -107,9 +108,8 @@ public class UserServiceImpl implements UserService {
             return ResponseVo.error("原密码或新密码不能为空!");
         }
 
-        Claims claims = TokenUtils.getClaimsFromToken();
-        final String account = claims.getAccount();
-        final String orgCode = claims.getOrgCode();
+        final String account = UserContextHolder.getUserId();
+        final String orgCode =UserContextHolder.getOrgCode();
 
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("org_code", orgCode);
@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(Md5Utils.MD5(newPassword));
         user.setUpdateTime(new Date());
-        user.setUpdateUser(claims.getAccount());
+        user.setUpdateUser(UserContextHolder.getUserId());
         userMapper.updateById(user);
         return ResponseVo.success("修改密码成功!");
     }
@@ -141,8 +141,7 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isNotBlank(userQueryDto.getOrgCode())) {
             queryWrapper.likeRight("org_code", userQueryDto.getOrgCode());
         } else {
-            Claims claims = TokenUtils.getClaimsFromToken();
-            queryWrapper.likeRight("org_code", claims.getOrgCode());
+            queryWrapper.likeRight("org_code", UserContextHolder.getOrgCode());
         }
 
         if (StringUtils.isNotBlank(userQueryDto.getUsername())) {
@@ -165,8 +164,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(Md5Utils.MD5(Constant.INIT_PASSWORD));
         user.setDelFlag(Constant.YesOrNo.NO.val());
         user.setCreateTime(new Date());
-        Claims claims = TokenUtils.getClaimsFromToken();
-        user.setCreateUser(claims.getAccount());
+        user.setCreateUser(UserContextHolder.getUserId());
         userMapper.insert(user);
         return ResponseVo.success("新增成功，默认登录密码是：" + Constant.INIT_PASSWORD);
     }
@@ -191,7 +189,7 @@ public class UserServiceImpl implements UserService {
         user.setUserId(userId);
         user.setDelFlag(Constant.YesOrNo.YES.val());
         user.setUpdateTime(new Date());
-        user.setUpdateUser(TokenUtils.getClaimsFromToken().getAccount());
+        user.setUpdateUser(UserContextHolder.getUserId());
         userMapper.updateById(user);
     }
 
@@ -202,7 +200,7 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = CommonDtoUtils.transform(userDto, User.class);
-        user.setUpdateUser(TokenUtils.getClaimsFromToken().getAccount());
+        user.setUpdateUser(UserContextHolder.getUserId());
         user.setUpdateTime(new Date());
         userMapper.updateById(user);
         return ResponseVo.success("编辑成功！");
@@ -223,7 +221,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(Md5Utils.MD5(Constant.INIT_PASSWORD));
         user.setUserId(userId);
         userMapper.updateById(user);
-        user.setUpdateUser(TokenUtils.getClaimsFromToken().getAccount());
+        user.setUpdateUser(UserContextHolder.getUserId());
         user.setUpdateTime(new Date());
         return ResponseVo.success("修改成功,重置后的密码为:" + Constant.INIT_PASSWORD);
     }

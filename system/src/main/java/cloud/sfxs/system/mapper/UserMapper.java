@@ -1,6 +1,6 @@
 package cloud.sfxs.system.mapper;
 
-import cloud.sfxs.system.config.mybatis.MyBaseMapper;
+import cloud.sfxs.system.config.MyBaseMapper;
 import cloud.sfxs.system.model.User;
 import org.springframework.stereotype.Repository;
 

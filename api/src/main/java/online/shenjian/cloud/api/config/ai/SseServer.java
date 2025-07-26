@@ -1,7 +1,7 @@
 package online.shenjian.cloud.api.config.ai;
 
 import online.shenjian.cloud.api.utils.SysConstants;
-import online.shenjian.cloud.api.utils.TokenUtils;
+import online.shenjian.cloud.common.UserContextHolder;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class SseServer {
     private static final Map<String, SseEmitter> EMITTERS = new ConcurrentHashMap<>();
 
     public static SseEmitter subscribe(String token) {
-        String account = TokenUtils.getClaimsFromToken(token).getAccount();
+        String account = UserContextHolder.getUserId();
         SseEmitter emitter = new SseEmitter(0L);
         EMITTERS.put(account, emitter);
 
@@ -52,7 +52,7 @@ public class SseServer {
     }
 
     public static String closeConnection() {
-        String account = TokenUtils.getClaimsFromToken().getAccount();
+        String account = UserContextHolder.getUserId();
         SseEmitter emitter = EMITTERS.remove(account);
         if (emitter != null) {
             emitter.complete();

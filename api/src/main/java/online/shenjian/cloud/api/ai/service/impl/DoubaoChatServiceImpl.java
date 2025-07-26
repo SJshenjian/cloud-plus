@@ -7,8 +7,8 @@ import com.volcengine.ark.runtime.service.ArkService;
 import online.shenjian.cloud.api.ai.service.ChatService;
 import online.shenjian.cloud.api.config.ai.SseServer;
 import online.shenjian.cloud.api.utils.SysConstants;
-import online.shenjian.cloud.api.utils.TokenUtils;
 import online.shenjian.cloud.client.cloud.dto.ai.ChatDto;
+import online.shenjian.cloud.common.UserContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class DoubaoChatServiceImpl implements ChatService {
 
     @Override
     public void sseChat(ChatDto chatDto) {
-        String account = TokenUtils.getClaimsFromToken().getAccount();
+        String account = UserContextHolder.getUserId();
         // 重置对话，TODO 记录数据库
         if (chatDto.getContent().contains("init")) {
             streamMessages = new ArrayList<>();

@@ -1,3 +1,5 @@
+server:
+  port: 8887
 spring:
   scheduling:
     cron:

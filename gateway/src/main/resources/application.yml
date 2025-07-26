@@ -1,2 +1,27 @@
 server:
   port: 8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway, health, info
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        namespace: public
+        username: nacos
+        password: nacos
+      discovery:
+        server-addr: localhost:8848
+        group: DEFAULT_GROUP
+        namespace: public
+        # 与conf/application.properties中的配置一致,用于服务发现时携带元数据信息,便于权限控制
+        metadata:
+          nacos.core.auth.server.identity.key: sfxsKey
+          nacos.core.auth.server.identity.value: sfxsValue
+        username: nacos
+        password: nacos

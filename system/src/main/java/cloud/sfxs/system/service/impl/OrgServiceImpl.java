@@ -1,10 +1,9 @@
 package cloud.sfxs.system.service.impl;
 
-import cloud.sfxs.system.config.model.Claims;
+import online.shenjian.cloud.common.UserContextHolder;
 import cloud.sfxs.system.mapper.OrgMapper;
 import cloud.sfxs.system.model.Org;
 import cloud.sfxs.system.service.OrgService;
-import cloud.sfxs.system.utils.TokenUtils;
 import cloud.sfxs.system.utils.TreeUtils;
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -38,9 +37,8 @@ public class OrgServiceImpl implements OrgService {
     public List<OrgTreeDto> initOrgInfoTree() {
         QueryWrapper<Org> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("del_flag", Constant.YesOrNo.NO.val());
-        Claims claims = TokenUtils.getClaimsFromToken();
         // 查询该组织机构下所有信息
-        final String orgCode = claims.getOrgCode();
+        final String orgCode = UserContextHolder.getOrgCode();
         queryWrapper.likeRight("org_code", orgCode);
         List<Org> orgList = orgMapper.selectList(queryWrapper);
 
@@ -95,8 +93,7 @@ public class OrgServiceImpl implements OrgService {
         org.setOrgCode(nextCode);
         org.setDelFlag(Constant.YesOrNo.NO.val());
         org.setCreateTime(new Date());
-        Claims claims = TokenUtils.getClaimsFromToken();
-        org.setCreateUser(claims.getAccount());
+        org.setCreateUser(UserContextHolder.getUserId());
         orgMapper.insert(org);
         return true;
     }
@@ -110,7 +107,7 @@ public class OrgServiceImpl implements OrgService {
         org.setOrgId(orgId);
         org.setDelFlag(Constant.YesOrNo.YES.val());
         org.setUpdateTime(new Date());
-        org.setUpdateUser(TokenUtils.getClaimsFromToken().getAccount());
+        org.setUpdateUser(UserContextHolder.getUserId());
         orgMapper.updateById(org);
     }
 
@@ -120,7 +117,7 @@ public class OrgServiceImpl implements OrgService {
             return false;
         }
         Org org = CommonDtoUtils.transform(orgInfoDto, Org.class);
-        org.setUpdateUser(TokenUtils.getClaimsFromToken().getAccount());
+        org.setUpdateUser(UserContextHolder.getUserId());
         org.setUpdateTime(new Date());
         orgMapper.updateById(org);
         return true;
