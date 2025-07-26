@@ -1,9 +1,9 @@
 package cloud.sfxs.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import online.shenjian.cloud.client.common.ResponseVo;
-import online.shenjian.cloud.client.cloud.dto.system.role.RoleDto;
-import online.shenjian.cloud.client.cloud.dto.system.role.RoleQueryDto;
+import cloud.sfxs.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.cloud.dto.system.role.RoleDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.role.RoleQueryDto;
 
 /**
  * @author shenjian

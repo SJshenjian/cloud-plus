@@ -13,7 +13,7 @@ import java.util.List;
 public class UserContextInterceptor implements HandlerInterceptor {
 
     private static final List<String> EXCLUDED_PATHS = Arrays.asList(
-            "/login/**"
+            "/login/**", "/auth/validate"
     );
 
     @Override

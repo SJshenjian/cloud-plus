@@ -1,9 +1,9 @@
 package online.shenjian.cloud.api.base.controller;
 
 import online.shenjian.cloud.api.base.service.DogeService;
-import online.shenjian.cloud.client.cloud.CloudClient;
-import online.shenjian.cloud.client.cloud.dto.doge.DogeDto;
-import online.shenjian.cloud.client.cloud.dto.doge.DogeQueryDto;
+import cloud.sfxs.cloud.client.cloud.CloudClient;
+import cloud.sfxs.cloud.client.cloud.dto.doge.DogeDto;
+import cloud.sfxs.cloud.client.cloud.dto.doge.DogeQueryDto;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package cloud.sfxs.system.service.impl;
 
+import cloud.sfxs.cloud.client.cloud.dto.system.auth.ClaimsDto;
 import cloud.sfxs.system.config.model.Claims;
 import cloud.sfxs.system.mapper.UserMapper;
 import cloud.sfxs.system.model.User;
@@ -7,9 +8,6 @@ import cloud.sfxs.system.service.AuthService;
 import cloud.sfxs.system.utils.TokenUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
-import online.shenjian.cloud.client.cloud.dto.system.auth.ClaimsDto;
-import online.shenjian.cloud.client.common.ResponseCode;
-import online.shenjian.cloud.client.common.ResponseVo;
 import online.shenjian.cloud.common.enums.Constant;
 import online.shenjian.cloud.common.utils.CommonDtoUtils;
 import org.springframework.stereotype.Service;
@@ -34,13 +32,13 @@ public class AuthServiceImpl implements AuthService {
 
 
     @Override
-    public ResponseVo validate(String token) {
+    public ClaimsDto validate(String token) {
         Claims claims = TokenUtils.getClaimsFromToken(token);
         if (claims == null) {
-            return  ResponseVo.message(ResponseCode.UN_AUTHORIZED);
+            return null;
         }
         if (claims.getExp() < new Date().getTime()) {
-            return ResponseVo.message(ResponseCode.LICENSE_EXPIRED);
+            return null;
         }
         // 需要数据库验证的场景, 我们先仅仅简单查询数据库
         //   用户状态动态变化: 用户被禁用、删除或注销; 用户角色或权限发生变化
@@ -54,15 +52,15 @@ public class AuthServiceImpl implements AuthService {
         //    分布式系统：在微服务架构中，网关或服务间通过 JWT 传递用户信息，依赖 JWT 的自包含性减少跨服务数据库调用。
         //    简单鉴权：只需要验证用户身份和基本权限（如 role），无需检查额外状态
         String account = claims.getAccount();
-        QueryWrapper queryWrapper = new QueryWrapper();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("account", account);
         queryWrapper.eq("del_flag", Constant.YesOrNo.NO.val());
         User user = userMapper.selectOne(queryWrapper);
         if (user == null) {
             log.info("登录用户：{} 不存在", account);
-            return ResponseVo.message(ResponseCode.UN_AUTHORIZED);
+            return null;
         }
         ClaimsDto claimsDto = CommonDtoUtils.transform(claims, ClaimsDto.class);
-        return ResponseVo.success(claimsDto);
+        return claimsDto;
     }
 }

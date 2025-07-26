@@ -1,16 +1,20 @@
 package cloud.sfxs.system.gateway.filter;
 
+import cloud.sfxs.cloud.client.cloud.SystemClient;
+import cloud.sfxs.cloud.client.cloud.dto.system.auth.ClaimsDto;
 import jakarta.annotation.Resource;
-import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerExchangeFilterFunction;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,10 +26,22 @@ import java.util.List;
  * @since 2025/7/26
  **/
 @Component
+@Slf4j
 public class AuthFilter implements GlobalFilter, Ordered {
 
+    @Lazy // 延迟加载，避免循环依赖
     @Resource
-    private WebClient.Builder webClientBuilder;
+    private SystemClient systemClient;
+
+    private final WebClient webClient;
+
+    public AuthFilter(WebClient.Builder webClientBuilder, ReactorLoadBalancerExchangeFilterFunction lbFunction) {
+        // webClient 配置负载均衡和基础URL，并通过 lbFunction 实现负载均衡
+        this.webClient = webClientBuilder
+                .filter(lbFunction)
+                .baseUrl("lb://system-service")
+                .build();
+    }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -45,23 +61,22 @@ public class AuthFilter implements GlobalFilter, Ordered {
         }
 
         // 调用鉴权服务
-        return webClientBuilder.build()
-                .post()
-                .uri("lb://system-service/auth/validate") // 使用 Nacos 服务发现
+        return webClient.get()
+                .uri("/auth/validate")
                 .header("Authorization", authHeader)
                 .retrieve()
-                .onStatus(HttpStatusCode::isError, response ->
-                    Mono.error(new RuntimeException("Authentication failed: " + response.statusCode())))
-                .bodyToMono(AuthResponse.class)
-                .flatMap(authResponse -> {
-                    // 将 X-user-id 和 X-role 添加到请求头
+                .bodyToMono(ClaimsDto.class)
+                .subscribeOn(Schedulers.boundedElastic())
+                .flatMap(claimsDto -> {
                     exchange.getRequest().mutate()
-                            .header("X-user-id", authResponse.getUserId())
-                            .header("X-role", authResponse.getRole())
+                            .header("X-user-id", claimsDto.getAccount())
+                            .header("X-org-code", claimsDto.getOrgCode())
+                            .header("X-role", String.join(",", claimsDto.getRoles()))
                             .build();
                     return chain.filter(exchange);
                 })
                 .onErrorResume(e -> {
+                    log.error("Error during authentication: ", e);
                     exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                     return exchange.getResponse().setComplete();
                 });
@@ -70,12 +85,5 @@ public class AuthFilter implements GlobalFilter, Ordered {
     @Override
     public int getOrder() {
         return -100; // 优先级高于其他过滤器
-    }
-
-    // 鉴权服务返回的响应类
-    @Data
-    private static class AuthResponse {
-        private String userId;
-        private String role;
     }
 }

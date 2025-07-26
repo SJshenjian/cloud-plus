@@ -5,7 +5,7 @@ import cloud.sfxs.system.model.File;
 import cloud.sfxs.system.service.FileService;
 import cloud.sfxs.system.utils.AliyunOssUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import online.shenjian.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

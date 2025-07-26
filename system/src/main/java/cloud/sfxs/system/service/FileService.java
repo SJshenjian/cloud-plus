@@ -2,7 +2,7 @@ package cloud.sfxs.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import cloud.sfxs.system.model.File;
-import online.shenjian.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

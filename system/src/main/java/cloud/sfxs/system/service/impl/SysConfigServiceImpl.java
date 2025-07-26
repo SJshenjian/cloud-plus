@@ -11,8 +11,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.micrometer.common.util.StringUtils;
-import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigDto;
-import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.config.SysConfigDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.config.SysConfigQueryDto;
 import online.shenjian.cloud.common.utils.CommonDtoUtils;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package online.shenjian.cloud.api.ai.service;
 
-import online.shenjian.cloud.client.cloud.dto.ai.ChatDto;
+import cloud.sfxs.cloud.client.cloud.dto.ai.ChatDto;
 
 /**
  * AI 聊天服务

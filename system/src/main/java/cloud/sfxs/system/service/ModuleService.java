@@ -1,9 +1,9 @@
 package cloud.sfxs.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleDto;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleQueryDto;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleTreeDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleTreeDto;
 
 import java.util.List;
 

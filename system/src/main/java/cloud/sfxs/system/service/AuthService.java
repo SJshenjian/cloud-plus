@@ -1,6 +1,6 @@
 package cloud.sfxs.system.service;
 
-import online.shenjian.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.cloud.dto.system.auth.ClaimsDto;
 
 /**
  * @author shenjian
@@ -14,5 +14,5 @@ public interface AuthService {
      * @param headers
      * @return
      */
-    ResponseVo validate(String headers);
+    ClaimsDto validate(String headers);
 }

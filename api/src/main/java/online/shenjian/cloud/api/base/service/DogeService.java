@@ -1,7 +1,7 @@
 package online.shenjian.cloud.api.base.service;
 
-import online.shenjian.cloud.client.cloud.dto.doge.DogeDto;
-import online.shenjian.cloud.client.cloud.dto.doge.DogeQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.doge.DogeDto;
+import cloud.sfxs.cloud.client.cloud.dto.doge.DogeQueryDto;
 
 import java.util.List;
 

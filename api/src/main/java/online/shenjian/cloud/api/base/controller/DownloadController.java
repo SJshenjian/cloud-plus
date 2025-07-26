@@ -1,8 +1,7 @@
 package online.shenjian.cloud.api.base.controller;
 
-import jakarta.servlet.http.HttpServletResponse;
+import cloud.sfxs.cloud.client.cloud.DownloadClient;
 import online.shenjian.cloud.api.base.service.DownloadService;
-import online.shenjian.cloud.client.cloud.DownloadClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -27,9 +26,9 @@ public class DownloadController implements DownloadClient {
         return downloadService.downloadFile(headers, fileId);
     }
 
-    @Override
-    public void downloadStream(HttpServletResponse response, String fileId) {
-        downloadService.downloadStream(fileId, response);
-    }
+//    @Override
+//    public void downloadStream(HttpServletResponse response, String fileId) {
+//        downloadService.downloadStream(fileId, response);
+//    }
 
 }

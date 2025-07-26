@@ -3,7 +3,7 @@ package cloud.sfxs.system.mapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.config.SysConfigDto;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
