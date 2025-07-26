@@ -19,10 +19,7 @@ import online.shenjian.cloud.client.common.ResponseVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -133,5 +130,9 @@ public interface SystemClient {
 
     @PostMapping(value = "/file/upload", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "文件上传", tags = "系统管理")
-    ResponseVo uploadFile(@RequestParam MultipartFile file) throws IOException;
+    ResponseVo<Object> uploadFile(@RequestParam MultipartFile file) throws IOException;
+
+    @GetMapping(value = "/auth/validate", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "TOKEN鉴权", tags = "系统管理")
+    ResponseVo<Object> authValidate(@RequestHeader("Authorization") String headers);
 }

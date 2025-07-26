@@ -1,0 +1,9 @@
+server:
+  port: 8889
+
+aliyunOss:
+  file:
+    endpoint: oss-cn-shanghai.aliyuncs.com
+    accessKeyId: LTAI8aSSSIJ
+    accessKeySecret: 9O4RxCcSSSSSXYma4
+    bucketName: sfxs

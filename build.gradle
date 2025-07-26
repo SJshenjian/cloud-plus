@@ -23,7 +23,7 @@ subprojects {
     apply plugin: 'io.spring.dependency-management'
 
     // 项目默认名称与版本
-    group = 'online.shenjian'
+    group = 'cloud.sfxs'
     version = '1.0-SNAPSHOT'
 
     tasks.withType(JavaCompile) {
@@ -53,5 +53,7 @@ subprojects {
         implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
         implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        compileOnly 'org.projectlombok:lombok:1.18.28'
+        annotationProcessor 'org.projectlombok:lombok:1.18.28'
     }
 }

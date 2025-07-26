@@ -1,17 +1,24 @@
-archivesBaseName = "api"
+plugins {
+    id 'java'
+}
 
-bootJar.enabled = true
+group = 'cloud.sfxs'
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
-
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
 
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:2.1.0'
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.3.1'
+    implementation 'com.baomidou:mybatis-plus-boot-starter-test:3.5.3.1'
     implementation 'com.alibaba:fastjson:2.0.35'
     implementation 'com.nimbusds:nimbus-jose-jwt:9.31'
 
@@ -20,10 +27,10 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation 'cn.hutool:hutool-core:5.8.20'
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
 
-    // 本地方法调用依赖
-    implementation 'net.java.dev.jna:jna:5.13.0'
+    implementation 'cn.hutool:hutool-core:5.8.25'
 
     // 引入本地的 common 模块
     implementation project(':common')
@@ -38,12 +45,8 @@ dependencies {
     // 阿里云OSS存储
     implementation 'com.aliyun.oss:aliyun-sdk-oss:3.10.2'
     implementation 'cn.bigmodel.openapi:oapi-java-sdk:release-V4-2.0.2'
+}
 
-    // 豆包
-    implementation 'com.volcengine:volcengine-java-sdk-ark-runtime:0.1.145'
-
-    // ElasticSearch
-    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
-    implementation 'co.elastic.clients:elasticsearch-java:8.15.0'
-    implementation 'io.opentelemetry:opentelemetry-api:1.32.0'
+test {
+    useJUnitPlatform()
 }
