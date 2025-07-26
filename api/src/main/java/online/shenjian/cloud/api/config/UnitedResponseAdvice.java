@@ -2,8 +2,8 @@ package online.shenjian.cloud.api.config;
 
 import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
-import online.shenjian.cloud.client.common.ResponseCode;
-import online.shenjian.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.common.ResponseCode;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.support.ResourceRegion;

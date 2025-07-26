@@ -2,7 +2,7 @@ package online.shenjian.cloud.api.base.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import online.shenjian.cloud.api.base.service.DownloadService;
-import online.shenjian.cloud.client.cloud.DownloadClient;
+import cloud.sfxs.cloud.client.cloud.DownloadClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;

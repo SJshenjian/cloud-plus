@@ -2,8 +2,8 @@ package cloud.sfxs.system.utils;
 
 
 import cloud.sfxs.system.model.Org;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleTreeDto;
-import online.shenjian.cloud.client.cloud.dto.system.org.OrgTreeDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleTreeDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.org.OrgTreeDto;
 import  cloud.sfxs.system.model.Module;
 
 import java.io.IOException;

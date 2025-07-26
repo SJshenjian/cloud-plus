@@ -11,8 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import online.shenjian.cloud.api.base.model.es.Doge;
 import online.shenjian.cloud.api.base.service.DogeService;
-import online.shenjian.cloud.client.cloud.dto.doge.DogeDto;
-import online.shenjian.cloud.client.cloud.dto.doge.DogeQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.doge.DogeDto;
+import cloud.sfxs.cloud.client.cloud.dto.doge.DogeQueryDto;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 

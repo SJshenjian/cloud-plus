@@ -7,10 +7,15 @@ management:
         include: gateway, health, info
 spring:
   cloud:
-    loadbalancer:
-      nacos:
-        enabled: true # 启用 Nacos 负载均衡
-      configurations: default # 默认配置
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 5000      # 5秒连接超时
+            readTimeout: 30000         # 30秒读取超时
+          download: # 下载服务专用配置
+            connectTimeout: 30000   # 连接超时30秒
+            readTimeout: 3600000   # 读取超时60分钟(1小时)
     nacos:
       config:
         server-addr: localhost:8848

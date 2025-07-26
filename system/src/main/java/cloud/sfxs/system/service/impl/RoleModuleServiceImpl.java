@@ -2,7 +2,7 @@ package cloud.sfxs.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import online.shenjian.cloud.client.cloud.dto.system.role.RoleModuleDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.role.RoleModuleDto;
 import cloud.sfxs.system.mapper.RoleModuleMapper;
 import cloud.sfxs.system.model.RoleModule;
 import cloud.sfxs.system.service.RoleModuleService;

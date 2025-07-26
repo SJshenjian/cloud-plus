@@ -35,3 +35,11 @@ mybatis-plus:
 aliyunOss:
   file:
     subDir: dev/sfxs
+logging:
+  file:
+    name: logs/system-service.log # Log file path
+  level:
+    org.springframework: DEBUG
+    org.springframework.security: DEBUG
+    com.alibaba.nacos: DEBUG
+    com.yourcompany.systemservice: DEBUG

@@ -1,6 +1,6 @@
 package cloud.sfxs.system.service;
 
-import online.shenjian.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 
 /**
  * @author shenjian

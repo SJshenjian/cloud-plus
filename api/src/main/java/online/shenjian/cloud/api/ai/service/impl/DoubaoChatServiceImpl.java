@@ -7,7 +7,7 @@ import com.volcengine.ark.runtime.service.ArkService;
 import online.shenjian.cloud.api.ai.service.ChatService;
 import online.shenjian.cloud.api.config.ai.SseServer;
 import online.shenjian.cloud.api.utils.SysConstants;
-import online.shenjian.cloud.client.cloud.dto.ai.ChatDto;
+import cloud.sfxs.cloud.client.cloud.dto.ai.ChatDto;
 import online.shenjian.cloud.common.UserContextHolder;
 import org.springframework.stereotype.Service;
 

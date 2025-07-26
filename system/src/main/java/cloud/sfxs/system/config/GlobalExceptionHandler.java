@@ -1,7 +1,7 @@
 package cloud.sfxs.system.config;
 
 import lombok.extern.slf4j.Slf4j;
-import online.shenjian.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

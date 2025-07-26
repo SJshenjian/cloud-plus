@@ -1,23 +1,23 @@
 package cloud.sfxs.system.controller;
 
+import cloud.sfxs.cloud.client.cloud.IPage;
+import cloud.sfxs.cloud.client.cloud.SystemClient;
+import cloud.sfxs.cloud.client.cloud.dto.UserDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.config.SysConfigDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.config.SysConfigQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleTreeDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.org.OrgInfoDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.org.OrgInfoQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.org.OrgTreeDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.role.RoleDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.role.RoleModuleDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.role.RoleQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.user.PasswordDto;
+import cloud.sfxs.cloud.client.cloud.dto.user.UserQueryDto;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 import cloud.sfxs.system.service.*;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import online.shenjian.cloud.client.cloud.SystemClient;
-import online.shenjian.cloud.client.cloud.dto.UserDto;
-import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigDto;
-import online.shenjian.cloud.client.cloud.dto.system.config.SysConfigQueryDto;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleDto;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleQueryDto;
-import online.shenjian.cloud.client.cloud.dto.system.module.ModuleTreeDto;
-import online.shenjian.cloud.client.cloud.dto.system.org.OrgInfoDto;
-import online.shenjian.cloud.client.cloud.dto.system.org.OrgInfoQueryDto;
-import online.shenjian.cloud.client.cloud.dto.system.org.OrgTreeDto;
-import online.shenjian.cloud.client.cloud.dto.system.role.RoleDto;
-import online.shenjian.cloud.client.cloud.dto.system.role.RoleModuleDto;
-import online.shenjian.cloud.client.cloud.dto.system.role.RoleQueryDto;
-import online.shenjian.cloud.client.cloud.dto.user.PasswordDto;
-import online.shenjian.cloud.client.cloud.dto.user.UserQueryDto;
-import online.shenjian.cloud.client.common.ResponseVo;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -68,7 +68,8 @@ public class SystemController implements SystemClient {
 
     @Override
     public IPage<UserDto> listUser(UserQueryDto userQueryDto) {
-        return userService.listUser(userQueryDto);
+        //return userService.listUser(userQueryDto);
+        return null;
     }
 
     @Override
@@ -108,7 +109,8 @@ public class SystemController implements SystemClient {
 
     @Override
     public IPage<OrgInfoDto> listOrg(OrgInfoQueryDto orgInfoQueryDto) {
-        return orgService.listOrg(orgInfoQueryDto);
+        //return orgService.listOrg(orgInfoQueryDto);
+        return null;
     }
 
     @Override
@@ -133,7 +135,8 @@ public class SystemController implements SystemClient {
 
     @Override
     public IPage<ModuleDto> listModule(ModuleQueryDto moduleQueryDto) {
-        return moduleService.listModule(moduleQueryDto);
+        //return moduleService.listModule(moduleQueryDto);
+        return null;
     }
 
     @Override
@@ -153,7 +156,8 @@ public class SystemController implements SystemClient {
 
     @Override
     public IPage<RoleDto> listRole(RoleQueryDto roleQueryDto) {
-        return roleService.listRole(roleQueryDto);
+        //return roleService.listRole(roleQueryDto);
+        return null;
     }
 
     @Override
@@ -183,7 +187,8 @@ public class SystemController implements SystemClient {
 
     @Override
     public IPage<SysConfigDto> listConfig(SysConfigQueryDto sysConfigQueryDto) {
-        return sysConfigService.listConfig(sysConfigQueryDto);
+        //return sysConfigService.listConfig(sysConfigQueryDto);
+        return null;
     }
 
     @Override

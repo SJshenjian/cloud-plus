@@ -1,9 +1,9 @@
 package cloud.sfxs.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import online.shenjian.cloud.client.cloud.dto.UserDto;
-import online.shenjian.cloud.client.cloud.dto.user.UserQueryDto;
-import online.shenjian.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.cloud.dto.UserDto;
+import cloud.sfxs.cloud.client.cloud.dto.user.UserQueryDto;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 
 /**
  * <p>

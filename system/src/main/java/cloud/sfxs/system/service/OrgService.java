@@ -1,9 +1,9 @@
 package cloud.sfxs.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import online.shenjian.cloud.client.cloud.dto.system.org.OrgInfoDto;
-import online.shenjian.cloud.client.cloud.dto.system.org.OrgInfoQueryDto;
-import online.shenjian.cloud.client.cloud.dto.system.org.OrgTreeDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.org.OrgInfoDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.org.OrgInfoQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.org.OrgTreeDto;
 
 import java.util.List;
 

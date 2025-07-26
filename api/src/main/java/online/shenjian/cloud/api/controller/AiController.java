@@ -2,9 +2,9 @@ package online.shenjian.cloud.api.controller;
 
 import online.shenjian.cloud.api.ai.service.ChatService;
 import online.shenjian.cloud.api.ai.service.impl.DoubaoChatServiceImpl;
-import online.shenjian.cloud.client.cloud.AiClient;
-import online.shenjian.cloud.client.cloud.dto.ai.ChatDto;
-import online.shenjian.cloud.client.common.ResponseVo;
+import cloud.sfxs.cloud.client.cloud.AiClient;
+import cloud.sfxs.cloud.client.cloud.dto.ai.ChatDto;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
