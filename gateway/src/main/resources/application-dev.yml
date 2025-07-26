@@ -1,0 +1,25 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway, health, info
+spring:
+  config:
+    import: nacos:gateway-service.yaml?group=DEFAULT_GROUP&namespace=1e95604c-258c-458c-b822-356566655522
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        namespace: 1e95604c-258c-458c-b822-356566655522
+      discovery:
+        server-addr: localhost:8848
+        group: DEFAULT_GROUP
+        namespace: 1e95604c-258c-458c-b822-356566655522
+        # 与conf/application.properties中的配置一致,用于服务发现时携带元数据信息,便于权限控制
+        metadata:
+          nacos.core.auth.server.identity.key: sfxsKey
+          nacos.core.auth.server.identity.value: sfxsValue
+      username: nacos
+      password: nacos@1
