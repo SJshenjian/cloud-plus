@@ -32,7 +32,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
         String path = exchange.getRequest().getURI().getPath();
         // Define paths to bypass
         List<String> publicPaths = Arrays.asList(
-                "/system-service/login"
+                "/system/login"
         );
         if (publicPaths.stream().anyMatch(path::startsWith)) {
             return chain.filter(exchange); // Skip authentication

@@ -7,6 +7,10 @@ management:
         include: gateway, health, info
 spring:
   cloud:
+    loadbalancer:
+      nacos:
+        enabled: true # 启用 Nacos 负载均衡
+      configurations: default # 默认配置
     nacos:
       config:
         server-addr: localhost:8848
@@ -34,12 +38,12 @@ spring:
         - id: api-service
           uri: lb://api-service # Use Nacos service ID
           predicates:
-            - Path=/api-service/**
+            - Path=/api/**
           filters:
             - StripPrefix=1 # Remove /api-service from the path
         - id: system-service
           uri: lb://system-service
           predicates:
-            - Path=/system-service/**
+            - Path=/system/**
           filters:
             - StripPrefix=1
