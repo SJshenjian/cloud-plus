@@ -25,3 +25,21 @@ spring:
           nacos.core.auth.server.identity.value: sfxsValue
         username: nacos
         password: nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true # Enable dynamic routing based on service discovery
+          lower-case-service-id: true # Use lowercase service IDs
+      routes:
+        - id: api-service
+          uri: lb://api-service # Use Nacos service ID
+          predicates:
+            - Path=/api-service/**
+          filters:
+            - StripPrefix=1 # Remove /api-service from the path
+        - id: system-service
+          uri: lb://system-service
+          predicates:
+            - Path=/system-service/**
+          filters:
+            - StripPrefix=1
