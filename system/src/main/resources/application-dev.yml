@@ -4,10 +4,6 @@ management:
       exposure:
         include: gateway, health, info
 spring:
-  security:
-    user:
-      name: admin
-      password: admin123
   datasource:
     druid:
       url: jdbc:mysql://127.0.0.1:3306/cloud?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
