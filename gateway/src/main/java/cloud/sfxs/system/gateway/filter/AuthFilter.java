@@ -12,6 +12,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 网关鉴权过滤器
  *
@@ -26,6 +29,14 @@ public class AuthFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        String path = exchange.getRequest().getURI().getPath();
+        // Define paths to bypass
+        List<String> publicPaths = Arrays.asList(
+                "/system-service/login"
+        );
+        if (publicPaths.stream().anyMatch(path::startsWith)) {
+            return chain.filter(exchange); // Skip authentication
+        }
         // 获取请求头中的 Authorization（例如 JWT）
         String authHeader = exchange.getRequest().getHeaders().getFirst("Authorization");
         if (authHeader == null || authHeader.isEmpty()) {
