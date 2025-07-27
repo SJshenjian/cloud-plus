@@ -1,6 +1,6 @@
 package cloud.sfxs.system.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import cloud.sfxs.cloud.client.cloud.dto.PageVo;
 import cloud.sfxs.cloud.client.cloud.dto.UserDto;
 import cloud.sfxs.cloud.client.cloud.dto.user.UserQueryDto;
 import cloud.sfxs.cloud.client.common.ResponseVo;
@@ -26,7 +26,7 @@ public interface UserService {
 
     ResponseVo<String> updatePassword(String originPassword, String newPassword);
 
-    IPage<UserDto> listUser(UserQueryDto userQueryDto);
+    PageVo<UserDto> listUser(UserQueryDto userQueryDto);
 
     ResponseVo saveUser(UserDto userDto);
 

@@ -1,5 +1,6 @@
 package cloud.sfxs.cloud.client.cloud;
 
+import cloud.sfxs.cloud.client.cloud.dto.PageVo;
 import cloud.sfxs.cloud.client.cloud.dto.UserDto;
 import cloud.sfxs.cloud.client.cloud.dto.system.auth.ClaimsDto;
 import cloud.sfxs.cloud.client.cloud.dto.system.config.SysConfigDto;
@@ -40,7 +41,7 @@ public interface SystemClient {
 
     @PostMapping(value = "/user/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "用户列表", tags = "用户管理")
-    IPage<UserDto> listUser(@RequestBody UserQueryDto userQueryDto);
+    PageVo<UserDto> listUser(@RequestBody UserQueryDto userQueryDto);
 
     @PostMapping(value = "/user/save", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "保存用户", tags = "用户管理")

@@ -1,6 +1,10 @@
 package cloud.sfxs.system.service.impl;
 
-import online.shenjian.cloud.common.UserContextHolder;
+import cloud.sfxs.cloud.client.cloud.dto.PageVo;
+import cloud.sfxs.cloud.client.cloud.dto.UserDto;
+import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleDto;
+import cloud.sfxs.cloud.client.cloud.dto.user.UserQueryDto;
+import cloud.sfxs.cloud.client.common.ResponseVo;
 import cloud.sfxs.system.config.model.Claims;
 import cloud.sfxs.system.mapper.ModulePlusMapper;
 import cloud.sfxs.system.mapper.UserMapper;
@@ -14,10 +18,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.micrometer.common.util.StringUtils;
-import cloud.sfxs.cloud.client.cloud.dto.UserDto;
-import cloud.sfxs.cloud.client.cloud.dto.system.module.ModuleDto;
-import cloud.sfxs.cloud.client.cloud.dto.user.UserQueryDto;
-import cloud.sfxs.cloud.client.common.ResponseVo;
+import online.shenjian.cloud.common.UserContextHolder;
 import online.shenjian.cloud.common.enums.Constant;
 import online.shenjian.cloud.common.utils.CommonDtoUtils;
 import online.shenjian.cloud.common.utils.Md5Utils;
@@ -133,7 +134,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public IPage<UserDto> listUser(UserQueryDto userQueryDto) {
+    public PageVo<UserDto> listUser(UserQueryDto userQueryDto) {
         IPage<UserDto> page = new Page<>(userQueryDto.getPageNumber(), userQueryDto.getPageSize());
         QueryWrapper<UserDto> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("del_flag", Constant.YesOrNo.NO.val());
@@ -150,8 +151,13 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isNotBlank(userQueryDto.getAccount())) {
             queryWrapper.like("account", userQueryDto.getAccount());
         }
-        IPage<UserDto> iPage = userPlusMapper.page(page, queryWrapper);
-        return iPage;
+        IPage<UserDto> userPage = userPlusMapper.page(page, queryWrapper);
+        return new PageVo<>(
+                (int) userPage.getCurrent(),
+                (int) userPage.getSize(),
+                userPage.getTotal(),
+                userPage.getRecords()
+        );
     }
 
     @Override

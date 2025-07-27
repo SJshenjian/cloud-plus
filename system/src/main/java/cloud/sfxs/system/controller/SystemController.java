@@ -2,6 +2,7 @@ package cloud.sfxs.system.controller;
 
 import cloud.sfxs.cloud.client.cloud.IPage;
 import cloud.sfxs.cloud.client.cloud.SystemClient;
+import cloud.sfxs.cloud.client.cloud.dto.PageVo;
 import cloud.sfxs.cloud.client.cloud.dto.UserDto;
 import cloud.sfxs.cloud.client.cloud.dto.system.auth.ClaimsDto;
 import cloud.sfxs.cloud.client.cloud.dto.system.config.SysConfigDto;
@@ -68,9 +69,8 @@ public class SystemController implements SystemClient {
     }
 
     @Override
-    public IPage<UserDto> listUser(UserQueryDto userQueryDto) {
-        //return userService.listUser(userQueryDto);
-        return null;
+    public PageVo<UserDto> listUser(UserQueryDto userQueryDto) {
+        return userService.listUser(userQueryDto);
     }
 
     @Override
