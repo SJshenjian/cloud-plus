@@ -1,4 +1,4 @@
 logging:
   level:
-    org.springframework.cloud.gateway: INFO
-    reactor.netty: INFO
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: DEBUG
