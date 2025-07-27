@@ -60,6 +60,11 @@ public class SystemController implements SystemClient {
 
     @Override
     public ResponseVo login(UserDto userDto) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return userService.login(userDto.getAccount(), userDto.getPassword());
     }
 

@@ -51,6 +51,8 @@ public class AuthServiceImpl implements AuthService {
         //    性能优先：避免数据库查询可以显著提高系统性能，尤其在高并发场景下。
         //    分布式系统：在微服务架构中，网关或服务间通过 JWT 传递用户信息，依赖 JWT 的自包含性减少跨服务数据库调用。
         //    简单鉴权：只需要验证用户身份和基本权限（如 role），无需检查额外状态
+
+        // TODO 双token机制 解决过期问题
         String account = claims.getAccount();
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("account", account);

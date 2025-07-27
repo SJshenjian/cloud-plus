@@ -14,6 +14,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     // 响应式，支持高并发，网关用
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    // Spring Cloud Alibaba Sentinel
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel'
+    // Sentinel Gateway Adapter（用于网关集成）
+    implementation 'com.alibaba.cloud:spring-cloud-alibaba-sentinel-gateway'
+    // 与Dashboard通信
+    implementation 'com.alibaba.csp:sentinel-transport-simple-http:1.8.8'
     implementation project(':client')
 }
 

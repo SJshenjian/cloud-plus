@@ -4,7 +4,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: gateway, health, info
+        include: "*"
 spring:
   cloud:
     openfeign:
@@ -52,3 +52,13 @@ spring:
             - Path=/system/**
           filters:
             - StripPrefix=1
+    sentinel:
+      # Sentinel 在 Spring 应用启动时立即初始化
+      eager: true
+      transport:
+        dashboard: localhost:18086
+      scg:
+        fallback:
+          mode: response
+          response-status: 200
+          response-body: '{"code":429,"message":"被限流或降级了！"}'
