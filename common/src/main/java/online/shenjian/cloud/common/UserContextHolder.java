@@ -9,8 +9,8 @@ public class UserContextHolder {
 
     private static final ThreadLocal<UserContext> contextHolder = new ThreadLocal<>();
 
-    public static void setContext(String userId, String orgCode) {
-        contextHolder.set(new UserContext(userId, orgCode));
+    public static void setContext(String userId, String orgCode, String token) {
+        contextHolder.set(new UserContext(userId, orgCode, token));
     }
 
     public static String getUserId() {
@@ -19,6 +19,14 @@ public class UserContextHolder {
             throw new IllegalStateException("User context not found");
         }
         return context.getUserId();
+    }
+
+    public static String getToken() {
+        UserContext context = contextHolder.get();
+        if (context == null) {
+            throw new IllegalStateException("User context not found");
+        }
+        return context.getToken();
     }
 
     public static String getOrgCode() {

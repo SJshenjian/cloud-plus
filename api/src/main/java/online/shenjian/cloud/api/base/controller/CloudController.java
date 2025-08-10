@@ -1,9 +1,12 @@
 package online.shenjian.cloud.api.base.controller;
 
-import online.shenjian.cloud.api.base.service.DogeService;
 import cloud.sfxs.cloud.client.cloud.CloudClient;
+import cloud.sfxs.cloud.client.cloud.SystemClient;
 import cloud.sfxs.cloud.client.cloud.dto.doge.DogeDto;
 import cloud.sfxs.cloud.client.cloud.dto.doge.DogeQueryDto;
+import cloud.sfxs.cloud.client.cloud.dto.user.PasswordDto;
+import jakarta.annotation.Resource;
+import online.shenjian.cloud.api.base.service.DogeService;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,6 +20,9 @@ public class CloudController implements CloudClient {
 
     private final DogeService dogeService;
 
+    @Resource
+    private SystemClient systemClient;
+
     public CloudController(DogeService dogeService) {
         this.dogeService = dogeService;
     }
@@ -27,6 +33,8 @@ public class CloudController implements CloudClient {
     }
     @Override
     public void checkDogeBalance() {
+        // 测试微服务间调用
+        systemClient.updatePassword(new PasswordDto());
         dogeService.checkDogeBalance();
     }
 }

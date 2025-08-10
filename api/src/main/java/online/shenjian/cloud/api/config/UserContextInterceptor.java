@@ -13,6 +13,7 @@ public class UserContextInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String userId = request.getHeader("X-user-id");
         String orgCode = request.getHeader("X-org-code");
+        String token = request.getHeader("Authorization");
 
         // 验证必要字段
         if (userId == null || orgCode == null) {
@@ -21,7 +22,7 @@ public class UserContextInterceptor implements HandlerInterceptor {
         }
 
         // 存储到上下文
-        UserContextHolder.setContext(userId, orgCode);
+        UserContextHolder.setContext(userId, orgCode, token);
         return true;
     }
 

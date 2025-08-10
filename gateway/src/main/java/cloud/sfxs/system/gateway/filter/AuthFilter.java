@@ -72,6 +72,8 @@ public class AuthFilter implements GlobalFilter, Ordered {
                             .header("X-user-id", claimsDto.getAccount())
                             .header("X-org-code", claimsDto.getOrgCode())
                             .header("X-role", String.join(",", claimsDto.getRoles()))
+                            // 新增返回TOKEN，用于后续服务调用验证
+                            .header("Authorization", authHeader)
                             .build();
                     return chain.filter(exchange);
                 })
